@@ -58,7 +58,7 @@ app.post('/register_user', urlencodedParser, function (req, res) {
     var userToSave = new BeeUser(response);
     userToSave.save();
 
-    res.redirect('/moto-map.html');
+    res.redirect('/login.html');
 });
 
 app.post('/login_user', urlencodedParser, function (req, res) {
