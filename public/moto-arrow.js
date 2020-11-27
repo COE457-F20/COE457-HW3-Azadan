@@ -56,22 +56,6 @@ function getSessionInfo() {
     });
 }
 
-
-window.addEventListener("beforeunload", function (e) {
-    if (!remember) {
-        $.get("http://localhost:1234/logout_user", function (data) {
-
-        });
-    }
-
-});
-
-
-
-
-
-
-
 function getAngle(start_coord, end_coord) {
     startLat = toRadians(start_coord.lat);
     startLng = toRadians(start_coord.lng);
