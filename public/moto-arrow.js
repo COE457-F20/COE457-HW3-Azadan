@@ -33,7 +33,43 @@ var options = {
 
 function init() {
     client.connect(options);
+    getSessionInfo();
 }
+
+
+
+
+function getSessionInfo() {
+    $.get("http://localhost:1234/get_session_info", function (data) {
+        var currentUserInfo = data;
+        console.log("received: " + JSON.stringify(currentUserInfo));
+
+        //even without cookie consent, we store their email for essential function
+        if (!currentUserInfo.email) {
+            window.location.href = 'error.html';
+        }
+        else {
+            remember = currentUserInfo.remember;
+            currEmail = currentUserInfo.email;
+        }
+
+    });
+}
+
+
+window.addEventListener("beforeunload", function (e) {
+    if (!remember) {
+        $.get("http://localhost:1234/logout_user", function (data) {
+
+        });
+    }
+
+});
+
+
+
+
+
 
 
 function getAngle(start_coord, end_coord) {
